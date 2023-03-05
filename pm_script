@@ -1,0 +1,4 @@
+#!/bin/bash
+
+powerprofilesctl set power-saver
+cpupower frequency-set -g conservative 
