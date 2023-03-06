@@ -1,0 +1,7 @@
+[Unit]
+Description=CPU powersave
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cpupower -c all frequency-set -g conservative
+[Install]
+WantedBy=multi-user.target
