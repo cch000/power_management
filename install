@@ -7,5 +7,6 @@ fi
 cp etc/systemd/system/cpupower.service /etc/systemd/system/
 cp usr/local/bin/unplugged_script /usr/local/bin/
 cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/
+chmod +x /usr/local/bin/unplugged_script
 systemctl enable --now cpupower.service
 udevadm control --reload
