@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+cp etc/systemd/system/cpupower.service /etc/systemd/system/
+cp usr/local/bin/unplugged_script /usr/local/bin/
+cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/
+systemctl enable --now cpupower.service
+udevadm control --reload
