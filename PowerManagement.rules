@@ -1,2 +1,0 @@
-ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", RUN+="/home/cch/experiments/power_management/pm_script"
-ACTION=="change", SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", RUN+="/usr/bin/cpupower frequency-set -g schedutil"
