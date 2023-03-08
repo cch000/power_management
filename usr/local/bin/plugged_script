@@ -1,0 +1,4 @@
+#!/bin/bash
+
+powerprofilesctl set performance
+cpupower frequency-set -g performance
