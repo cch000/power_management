@@ -1,3 +1,7 @@
+# TODO
+
+- shift_f5_script does not work when activated with shift+f5 because sudo requires a password
+
 # Simple power Management for laptops
 
 ## What does it do?
@@ -17,7 +21,7 @@ dnf install kernel-tools
 
 ## Installation
 
-Before installing check that your computer supports the previously mentioned cpu governors with:
+Before installing check that your laptop supports the previously mentioned cpu governors with:
 
 ```
 cpupower frequency-info

@@ -2,6 +2,6 @@
 Description=CPU powersave
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cpupower -c all frequency-set -g conservative
+ExecStart=/usr/local/bin/unplugged_script
 [Install]
 WantedBy=multi-user.target

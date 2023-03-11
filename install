@@ -4,9 +4,16 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-cp etc/systemd/system/cpupower.service /etc/systemd/system/
+cp etc/systemd/system/start_pwr_management.service /etc/systemd/system/
+
 cp usr/local/bin/unplugged_script /usr/local/bin/
+cp usr/local/bin/plugged_script /usr/local/bin/
+cp usr/local/bin/shift_f5_script /usr/local/bin/
 cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/
+
+chmod +x /usr/local/bin/shift_f5_script
 chmod +x /usr/local/bin/unplugged_script
-systemctl enable --now cpupower.service
+chmod +x /usr/local/bin/plugged_script
+
+systemctl enable start_pwr_management.service
 udevadm control --reload

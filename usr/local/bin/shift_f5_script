@@ -1,0 +1,5 @@
+#!/bin/bash
+
+powerprofilesctl set power-saver
+sudo -S ryzenadj --stapm-limit=7000 --fast-limit=7000 --slow-limit=7000 --power-saving
+notify-send cpu 7w
