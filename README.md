@@ -17,7 +17,7 @@ dnf install kernel-tools
 
 ## Installation
 
-Before installing check that your computer supports the previously mentioned cpu governors with:
+Before installing check that your laptop supports the previously mentioned cpu governors with:
 
 ```
 cpupower frequency-info
