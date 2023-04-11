@@ -1,4 +1,5 @@
 #!/bin/bash
 
 powerprofilesctl set power-saver
-cpupower frequency-set -g conservative 
+cpupower frequency-set -g conservative
+echo 'passive' | sudo tee /sys/devices/system/cpu/amd_pstate/status

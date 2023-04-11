@@ -3,12 +3,18 @@
 ## What does it do?
 
 - Changes the default cpu governor to `conservative`, helps save battery (you should test it).
-- When the laptop is plugged in the cpu governor is chaged back to `schedutil`.
-- When the laptop is unplugged `conservative` is set as the cpu governor and the power profile is set to `power-saver`
+- When the laptop is plugged in the cpu governor is chaged back to `schedutil` 
+and the performance scaling driver is changed to `amd-pstate epp`.
+- When the laptop is unplugged `conservative` is set as the cpu governor, the power profile is set to `power-saver` 
+and the performance scaling driver is changed to `amd-pstate`.
 
 ## Requisites
 
-Requires cpupower, on fedora it can be installed running:
+- amd cpu
+
+- kernel >= 6.3 or a patched kernel with amd-pstate epp
+
+- Requires cpupower, on fedora it can be installed running:
 
 ```
 dnf install kernel-tools
@@ -48,9 +54,13 @@ chmod +x install
 sudo ./install
 ```
 
+**It is recomended to reboot.**
+
 ## Uninstall
 
 ```
 chmod +x uninstall
 sudo ./uninstall
 ```
+
+**Don't forget to reboot.**
