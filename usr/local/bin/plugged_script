@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cpupower frequency-set -g conservative
+echo 'active' | tee /sys/devices/system/cpu/amd_pstate/status
