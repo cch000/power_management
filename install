@@ -1,17 +1,47 @@
 #!/bin/bash
 
+readonly min_version=6.3
+current_version=$(uname -r | cut -c1-3)
+
 if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
+  then printf "Please run as root"
   exit
 fi
 
-cp etc/systemd/system/cpupower.service /etc/systemd/system/
-cp usr/local/bin/unplugged_script /usr/local/bin/
-cp usr/local/bin/plugged_script /usr/local/bin/
-cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/
-chmod +x /usr/local/bin/unplugged_script
-chmod +x /usr/local/bin/plugged_script
+install(){
 
-systemctl enable --now cpupower.service
+  cp etc/systemd/system/cpupower.service /etc/systemd/system/
+  cp usr/local/bin/unplugged_script /usr/local/bin/
+  cp usr/local/bin/plugged_script /usr/local/bin/
+  cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/    
 
-udevadm control --reload
+  chmod +x /usr/local/bin/unplugged_script
+  chmod +x /usr/local/bin/plugged_script
+
+  systemctl enable cpupower.service
+
+  udevadm control --reload
+
+  printf "Installed correctly"
+}
+
+if (( $(echo "$current_version >= $min_version" |bc -l ))); then
+  install
+else
+  while true; do
+
+    printf "Do you have a kernel patched with amd-pstate epp (y/n)? "
+    read -r answer
+  if [ "$answer" != "${answer#[Yy]}" ] ; then 
+
+    install
+    break 
+  elif [ "$answer" != "${answer#[Nyn]}" ] ; then 
+
+    printf "amd-pstate epp is a requirement for this script"
+    break
+  fi
+
+  printf "Answer y/n \n" 
+  done
+fi

@@ -3,14 +3,14 @@
 ## What does it do?
 
 - Changes the default cpu governor to `conservative`, helps save battery (you should test it).
-- When the laptop is plugged in the cpu governor is chaged back to `schedutil` 
-and the performance scaling driver is changed to `amd-pstate epp`.
+- When the laptop is plugged in the cpu governor is chaged to `performance` 
+and the scaling driver is changed to `amd-pstate epp`.
 - When the laptop is unplugged `conservative` is set as the cpu governor, the power profile is set to `power-saver` 
 and the performance scaling driver is changed to `amd-pstate`.
 
 ## Requisites
 
-- amd cpu
+- amd cpu (at least zen2)
 
 - kernel >= 6.3 or a patched kernel with amd-pstate epp
 
@@ -54,7 +54,7 @@ chmod +x install
 sudo ./install
 ```
 
-**It is recomended to reboot.**
+**Reboot**
 
 ## Uninstall
 
