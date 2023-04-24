@@ -1,3 +1,4 @@
 #!/bin/bash
 
 echo 'active' | tee /sys/devices/system/cpu/amd_pstate/status
+cpupower frequency-set -g performance
