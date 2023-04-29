@@ -1,0 +1,15 @@
+#!/bin/bash
+
+readonly scripts_dir="/usr/local/bin"
+
+bat=$(echo /sys/class/power_supply/BAT*)
+bat_status="$bat/status"
+
+if [[ $(cat "$bat_status") == "Discharging" ]]; then
+
+    "$scripts_dir"/unplugged_script
+
+    else
+
+    "$scripts_dir"/plugged_script
+fi

@@ -1,6 +1,9 @@
 #!/bin/bash
 
 readonly min_version=6.3
+readonly scripts_repo_dir="usr/local/bin"
+readonly scripts_install_dir="/usr/local/bin"
+
 current_version=$(uname -r | cut -c1-3)
 
 if [ "$EUID" -ne 0 ]
@@ -11,14 +14,18 @@ fi
 install(){
 
   cp etc/systemd/system/cpupower.service /etc/systemd/system/
-  cp usr/local/bin/unplugged_script /usr/local/bin/
-  cp usr/local/bin/plugged_script /usr/local/bin/
-  cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/    
 
-  chmod +x /usr/local/bin/unplugged_script
-  chmod +x /usr/local/bin/plugged_script
+  cp "$scripts_repo_dir"/service_script "$scripts_install_dir"
+  cp "$scripts_repo_dir"/unplugged_script "$scripts_install_dir"
+  cp "$scripts_repo_dir"/plugged_script "$scripts_install_dir"
 
-  systemctl enable cpupower.service
+  chmod +x "$scripts_install_dir"/service_script
+  chmod +x "$scripts_install_dir"/unplugged_script
+  chmod +x "$scripts_install_dir"/plugged_script
+
+  cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/
+
+  systemctl enable --now cpupower.service
 
   udevadm control --reload
 
