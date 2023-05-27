@@ -13,7 +13,7 @@ fi
 
 install(){
 
-  cp etc/systemd/system/cpupower.service /etc/systemd/system/
+  cp etc/systemd/system/powermanage.service /etc/systemd/system/
 
   cp "$scripts_repo_dir"/service_script "$scripts_install_dir"
   cp "$scripts_repo_dir"/unplugged_script "$scripts_install_dir"
@@ -25,7 +25,7 @@ install(){
 
   cp etc/udev/rules.d/pwr_management.rules /etc/udev/rules.d/
 
-  systemctl enable --now cpupower.service
+  systemctl enable --now powermanage.service
 
   udevadm control --reload
 
@@ -39,11 +39,11 @@ else
 
     printf "Do you have a kernel patched with amd-pstate epp (y/n)? "
     read -r answer
-  if [ "$answer" != "${answer#[Yy]}" ] ; then 
+  if [[ ! ${answer,,} =~ ^y(es)?$ ]] ; then 
 
     install
     break 
-  elif [ "$answer" != "${answer#[Nyn]}" ] ; then 
+  elif [[ ! ${answer,,} =~ ^n(o)?$ ]] ; then 
 
     printf "amd-pstate epp is a requirement for this script"
     break

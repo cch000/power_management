@@ -1,4 +1,7 @@
 #!/bin/bash
 
-echo 'active' | tee /sys/devices/system/cpu/amd_pstate/status
-cpupower frequency-set -g performance
+echo "active" | tee /sys/devices/system/cpu/amd_pstate/status
+
+for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
+    echo "performance" | tee "$i"
+done
