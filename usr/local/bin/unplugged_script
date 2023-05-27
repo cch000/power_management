@@ -2,5 +2,7 @@
 
 powerprofilesctl set power-saver
 echo 'passive' | tee /sys/devices/system/cpu/amd_pstate/status
-cpupower frequency-set -g conservative
 
+for i in /sys/devices/system/cpu/*/cpufreq/scaling_governor; do
+    echo "conservative" | tee "$i"
+done

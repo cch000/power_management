@@ -7,9 +7,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-systemctl stop cpupower.service
-
-rm /etc/systemd/system/cpupower.service
+rm /etc/systemd/system/powermanage.service
 
 rm "$scripts_install_dir"/unplugged_script
 rm "$scripts_install_dir"/plugged_script
